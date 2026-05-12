@@ -26,6 +26,7 @@
         <nacos.config.version>0.8.0</nacos.config.version>
         <spring.context.support.version>1.0.6</spring.context.support.version>
         <drools.version>7.74.1.Final</drools.version>
+        <mvel.version>2.5.2.Final</mvel.version>
 
         <!-- Maven Plugin Versions -->
         <maven-source-plugin.version>2.2.1</maven-source-plugin.version>
@@ -196,6 +197,11 @@
                 <groupId>org.drools</groupId>
                 <artifactId>drools-mvel</artifactId>
                 <version>${drools.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.mvel</groupId>
+                <artifactId>mvel2</artifactId>
+                <version>${mvel.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.kie</groupId>
