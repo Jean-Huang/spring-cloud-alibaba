@@ -46,8 +46,8 @@ public class AesKafkaTemplateTests {
 		AesKafkaProperties properties = properties();
 		AesKafkaMessageEncryptor encryptor = new DefaultAesKafkaMessageEncryptor(
 				properties);
-		AesKafkaTemplate<String> template = new AesKafkaTemplate<String>(
-				kafkaOperations, encryptor, properties);
+		AesKafkaTemplate<String> template = new AesKafkaTemplate<String>(kafkaOperations,
+				encryptor, properties);
 
 		template.send("topic", "key", "hello kafka");
 
@@ -57,7 +57,8 @@ public class AesKafkaTemplateTests {
 		ProducerRecord<String, String> record = captor.getValue();
 		assertThat(record.value()).isNotEqualTo("hello kafka");
 		assertThat(encryptor.decrypt(record.value())).isEqualTo("hello kafka");
-		assertThat(record.headers().lastHeader(properties.getEncryptedHeader())).isNotNull();
+		assertThat(record.headers().lastHeader(properties.getEncryptedHeader()))
+				.isNotNull();
 	}
 
 	private AesKafkaProperties properties() {

@@ -29,6 +29,9 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @ConfigurationProperties(prefix = AesKafkaProperties.PREFIX)
 public class AesKafkaProperties {
 
+	/**
+	 * Configuration property prefix for AES encrypted Kafka support.
+	 */
 	public static final String PREFIX = "spring.cloud.alibaba.kafka.aes";
 
 	private boolean enabled = true;
@@ -103,7 +106,15 @@ public class AesKafkaProperties {
 
 	public enum KeyEncoding {
 
-		RAW, BASE64
+		/**
+		 * Interpret secret-key as raw text bytes.
+		 */
+		RAW,
+
+		/**
+		 * Interpret secret-key as a Base64 encoded AES key.
+		 */
+		BASE64
 
 	}
 

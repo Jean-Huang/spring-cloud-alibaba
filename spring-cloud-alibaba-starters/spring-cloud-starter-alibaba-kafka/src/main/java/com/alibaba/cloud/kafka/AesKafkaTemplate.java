@@ -67,7 +67,8 @@ public class AesKafkaTemplate<K> {
 		return send(new ProducerRecord<K, String>(topic, partition, key, data));
 	}
 
-	public ListenableFuture<SendResult<K, String>> send(ProducerRecord<K, String> record) {
+	public ListenableFuture<SendResult<K, String>> send(
+			ProducerRecord<K, String> record) {
 		Assert.notNull(record, "ProducerRecord must not be null");
 		ProducerRecord<K, String> encryptedRecord = new ProducerRecord<K, String>(
 				record.topic(), record.partition(), record.timestamp(), record.key(),
@@ -91,8 +92,8 @@ public class AesKafkaTemplate<K> {
 	private void markEncrypted(ProducerRecord<K, String> record) {
 		if (StringUtils.hasText(properties.getEncryptedHeader())
 				&& record.value() != null) {
-			record.headers().add(new RecordHeader(properties.getEncryptedHeader(), "true"
-					.getBytes(StandardCharsets.UTF_8)));
+			record.headers().add(new RecordHeader(properties.getEncryptedHeader(),
+					"true".getBytes(StandardCharsets.UTF_8)));
 		}
 	}
 

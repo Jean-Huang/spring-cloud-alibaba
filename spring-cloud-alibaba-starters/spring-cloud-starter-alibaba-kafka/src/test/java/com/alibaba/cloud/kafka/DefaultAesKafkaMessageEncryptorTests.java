@@ -83,10 +83,9 @@ public class DefaultAesKafkaMessageEncryptorTests {
 
 	@Test
 	public void shouldRejectInvalidKeyLength() {
-		assertThatThrownBy(
-				() -> new DefaultAesKafkaMessageEncryptor(properties("short")))
-						.isInstanceOf(IllegalArgumentException.class)
-						.hasMessageContaining("AES secret key");
+		assertThatThrownBy(() -> new DefaultAesKafkaMessageEncryptor(properties("short")))
+				.isInstanceOf(IllegalArgumentException.class)
+				.hasMessageContaining("AES secret key");
 	}
 
 	private AesKafkaProperties properties(String secretKey) {

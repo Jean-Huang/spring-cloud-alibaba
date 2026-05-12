@@ -101,7 +101,8 @@ public class DefaultAesKafkaMessageEncryptor implements AesKafkaMessageEncryptor
 			Assert.isTrue(cipherText.length > ivLength,
 					"Cipher text must contain an initialization vector and payload");
 			byte[] iv = Arrays.copyOfRange(cipherText, 0, ivLength);
-			byte[] encrypted = Arrays.copyOfRange(cipherText, ivLength, cipherText.length);
+			byte[] encrypted = Arrays.copyOfRange(cipherText, ivLength,
+					cipherText.length);
 			Cipher cipher = Cipher.getInstance(TRANSFORMATION);
 			cipher.init(Cipher.DECRYPT_MODE, secretKey,
 					new GCMParameterSpec(properties.getAuthenticationTagLength(), iv));

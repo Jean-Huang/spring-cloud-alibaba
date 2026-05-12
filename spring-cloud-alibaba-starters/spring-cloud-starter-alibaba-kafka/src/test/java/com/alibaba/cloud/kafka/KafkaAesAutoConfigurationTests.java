@@ -48,8 +48,9 @@ public class KafkaAesAutoConfigurationTests {
 
 	@Test
 	public void shouldCreateEncryptionBeansWhenSecretKeyConfigured() {
-		this.contextRunner.withPropertyValues(
-				"spring.cloud.alibaba.kafka.aes.secret-key=1234567890123456")
+		this.contextRunner
+				.withPropertyValues(
+						"spring.cloud.alibaba.kafka.aes.secret-key=1234567890123456")
 				.run(context -> {
 					assertThat(context).hasSingleBean(AesKafkaMessageEncryptor.class);
 					assertThat(context).hasSingleBean(AesKafkaMessageProcessor.class);
@@ -61,7 +62,8 @@ public class KafkaAesAutoConfigurationTests {
 		this.contextRunner.withUserConfiguration(KafkaOperationsConfiguration.class)
 				.withPropertyValues(
 						"spring.cloud.alibaba.kafka.aes.secret-key=1234567890123456")
-				.run(context -> assertThat(context).hasSingleBean(AesKafkaTemplate.class));
+				.run(context -> assertThat(context)
+						.hasSingleBean(AesKafkaTemplate.class));
 	}
 
 	@Test

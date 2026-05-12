@@ -38,8 +38,8 @@ public class AesKafkaMessageProcessorTests {
 		AesKafkaMessageEncryptor encryptor = encryptor();
 		AesKafkaMessageProcessor processor = new AesKafkaMessageProcessor(encryptor,
 				properties());
-		ConsumerRecord<String, String> record = new ConsumerRecord<String, String>("topic",
-				0, 0L, "key", encryptor.encrypt("hello kafka"));
+		ConsumerRecord<String, String> record = new ConsumerRecord<String, String>(
+				"topic", 0, 0L, "key", encryptor.encrypt("hello kafka"));
 
 		assertThat(processor.decrypt(record)).isEqualTo("hello kafka");
 	}
@@ -49,8 +49,8 @@ public class AesKafkaMessageProcessorTests {
 		AesKafkaMessageEncryptor encryptor = encryptor();
 		AesKafkaMessageProcessor processor = new AesKafkaMessageProcessor(encryptor,
 				properties());
-		ConsumerRecord<String, String> record = new ConsumerRecord<String, String>("topic",
-				0, 0L, "key", encryptor.encrypt("hello kafka"));
+		ConsumerRecord<String, String> record = new ConsumerRecord<String, String>(
+				"topic", 0, 0L, "key", encryptor.encrypt("hello kafka"));
 		AtomicReference<String> payload = new AtomicReference<String>();
 
 		processor.process(record, payload::set);
@@ -72,7 +72,8 @@ public class AesKafkaMessageProcessorTests {
 		Message<String> decrypted = processor.decrypt(message);
 
 		assertThat(decrypted.getPayload()).isEqualTo("hello kafka");
-		assertThat(decrypted.getHeaders()).doesNotContainKey(properties.getEncryptedHeader());
+		assertThat(decrypted.getHeaders())
+				.doesNotContainKey(properties.getEncryptedHeader());
 	}
 
 	private AesKafkaMessageEncryptor encryptor() {
