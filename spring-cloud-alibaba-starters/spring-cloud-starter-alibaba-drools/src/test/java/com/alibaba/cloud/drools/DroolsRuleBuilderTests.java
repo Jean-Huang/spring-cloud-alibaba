@@ -16,8 +16,8 @@
 
 package com.alibaba.cloud.drools;
 
-import com.alibaba.cloud.drools.compile.DroolsRuleBuilder;
 import com.alibaba.cloud.drools.compile.DroolsRuleBuildException;
+import com.alibaba.cloud.drools.compile.DroolsRuleBuilder;
 import com.alibaba.cloud.drools.model.RuleDefinition;
 import com.alibaba.cloud.drools.model.RuleSetDefinition;
 import org.junit.Test;
@@ -38,8 +38,7 @@ public class DroolsRuleBuilderTests {
 	@Test
 	public void shouldBuildDrlFromRuleSetDefinition() {
 		RuleDefinition rule = RuleDefinition.of("high value order",
-				"$order : OrderFact(amount > 100)",
-				"$order.setHighValue(true);");
+				"$order : OrderFact(amount > 100)", "$order.setHighValue(true);");
 		rule.setSalience(10);
 		RuleDefinition disabledRule = RuleDefinition.of("disabled",
 				"$order : OrderFact(amount > 1)", "$order.setHighValue(false);");
