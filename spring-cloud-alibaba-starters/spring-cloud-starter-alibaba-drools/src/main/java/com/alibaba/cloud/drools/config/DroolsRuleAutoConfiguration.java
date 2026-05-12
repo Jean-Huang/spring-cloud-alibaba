@@ -79,8 +79,7 @@ public class DroolsRuleAutoConfiguration {
 	@Bean
 	@ConditionalOnMissingBean
 	public DroolsRuleService droolsRuleService(DroolsRuleCompiler droolsRuleCompiler,
-			DroolsRuleTester droolsRuleTester,
-			DroolsRulePublisher droolsRulePublisher) {
+			DroolsRuleTester droolsRuleTester, DroolsRulePublisher droolsRulePublisher) {
 		return new DroolsRuleService(droolsRuleCompiler, droolsRuleTester,
 				droolsRulePublisher);
 	}

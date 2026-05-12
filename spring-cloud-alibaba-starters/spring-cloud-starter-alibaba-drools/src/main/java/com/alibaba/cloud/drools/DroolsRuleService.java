@@ -42,8 +42,8 @@ public class DroolsRuleService {
 
 	private final DroolsRulePublisher rulePublisher;
 
-	public DroolsRuleService(DroolsRuleCompiler ruleCompiler,
-			DroolsRuleTester ruleTester, DroolsRulePublisher rulePublisher) {
+	public DroolsRuleService(DroolsRuleCompiler ruleCompiler, DroolsRuleTester ruleTester,
+			DroolsRulePublisher rulePublisher) {
 		this.ruleCompiler = ruleCompiler;
 		this.ruleTester = ruleTester;
 		this.rulePublisher = rulePublisher;
@@ -68,7 +68,8 @@ public class DroolsRuleService {
 
 	public DroolsRuleDeploymentResult compileTestAndPublish(
 			RuleSetDefinition ruleSetDefinition, Collection<?> testFacts) {
-		return compileTestAndPublish(ruleSetDefinition, testFacts, Collections.emptyMap());
+		return compileTestAndPublish(ruleSetDefinition, testFacts,
+				Collections.emptyMap());
 	}
 
 	public DroolsRuleDeploymentResult compileTestAndPublish(
@@ -77,8 +78,7 @@ public class DroolsRuleService {
 		CompiledRuleSet compiledRuleSet = compile(ruleSetDefinition);
 		RuleTestResult testResult = test(compiledRuleSet, testFacts, globals);
 		RulePublishResult publishResult = publish(compiledRuleSet);
-		return new DroolsRuleDeploymentResult(compiledRuleSet, testResult,
-				publishResult);
+		return new DroolsRuleDeploymentResult(compiledRuleSet, testResult, publishResult);
 	}
 
 }

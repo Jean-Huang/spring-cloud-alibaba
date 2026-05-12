@@ -46,13 +46,12 @@ public class DroolsRuleServiceTests {
 		DroolsRuleService ruleService = new DroolsRuleService(
 				new DroolsRuleCompiler(
 						new DroolsRuleBuilder("com.alibaba.cloud.drools.test")),
-				new DroolsRuleTester(),
-				new DroolsRulePublisher(new CapturingRuntimePlatformClient(
-						publishedRuleSet)));
+				new DroolsRuleTester(), new DroolsRulePublisher(
+						new CapturingRuntimePlatformClient(publishedRuleSet)));
 		OrderFact order = new OrderFact(120);
 
-		DroolsRuleDeploymentResult result = ruleService.compileTestAndPublish(
-				createRuleSet(), Collections.singletonList(order));
+		DroolsRuleDeploymentResult result = ruleService
+				.compileTestAndPublish(createRuleSet(), Collections.singletonList(order));
 
 		assertThat(order.isHighValue()).isTrue();
 		assertThat(result.getTestResult().getFiredRules()).isEqualTo(1);

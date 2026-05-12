@@ -19,8 +19,8 @@ package com.alibaba.cloud.drools.publish;
 import com.alibaba.cloud.drools.model.CompiledRuleSet;
 
 /**
- * Default client that keeps the module usable before a runtime platform adapter
- * is configured.
+ * Default client that keeps the module usable before a runtime platform adapter is
+ * configured.
  *
  * @author Cursor
  */

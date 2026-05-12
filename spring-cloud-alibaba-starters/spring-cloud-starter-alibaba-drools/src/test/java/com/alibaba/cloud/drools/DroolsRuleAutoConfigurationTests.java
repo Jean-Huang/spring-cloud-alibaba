@@ -36,8 +36,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class DroolsRuleAutoConfigurationTests {
 
 	private final ApplicationContextRunner contextRunner = new ApplicationContextRunner()
-			.withConfiguration(
-					AutoConfigurations.of(DroolsRuleAutoConfiguration.class));
+			.withConfiguration(AutoConfigurations.of(DroolsRuleAutoConfiguration.class));
 
 	@Test
 	public void shouldCreateDefaultRuleBeans() {
@@ -51,16 +50,14 @@ public class DroolsRuleAutoConfigurationTests {
 
 	@Test
 	public void shouldBackOffWhenRuntimePlatformClientExists() {
-		this.contextRunner.withUserConfiguration(CustomClientConfiguration.class)
-				.run(context -> assertThat(context
-						.getBean(RuleRuntimePlatformClient.class))
-								.isInstanceOf(CustomRuntimePlatformClient.class));
+		this.contextRunner.withUserConfiguration(CustomClientConfiguration.class).run(
+				context -> assertThat(context.getBean(RuleRuntimePlatformClient.class))
+						.isInstanceOf(CustomRuntimePlatformClient.class));
 	}
 
 	@Test
 	public void shouldDisableRuleBeans() {
-		this.contextRunner
-				.withPropertyValues("spring.cloud.alibaba.drools.enabled=false")
+		this.contextRunner.withPropertyValues("spring.cloud.alibaba.drools.enabled=false")
 				.run(context -> assertThat(context)
 						.doesNotHaveBean(DroolsRuleService.class));
 	}
